@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[template.environment]
+  MEDIASFU_API_USERNAME = "MediaSFU API username (mediasfu.com/api-keys)"
+  MEDIASFU_API_KEY = "MediaSFU API key; use a sandbox key first"
+  ORGANIZER_CODE = "Code organisers type to create events, 8+ characters"
+  EVENT_LINK_SECRET = "32+ random characters that sign event links"

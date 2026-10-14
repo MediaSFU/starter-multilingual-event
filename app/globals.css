@@ -1,0 +1,45 @@
+:root {
+  --ink: #0b1b2b;
+  --muted: #4a5b6c;
+  --surface: #ffffff;
+  --page: #f3f6f9;
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+  --danger: #b42318;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--page);
+}
+
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+main.card { max-width: 520px; margin: 48px auto; padding: 28px; background: var(--surface); border-radius: 14px; box-shadow: 0 1px 3px rgb(11 27 43 / 0.12); }
+h1 { font-size: 1.5rem; margin: 0 0 8px; }
+p { color: var(--muted); line-height: 1.5; }
+form { display: grid; gap: 14px; margin-top: 16px; }
+label { display: grid; gap: 6px; font-weight: 600; font-size: 0.9rem; }
+label.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin: 16px 0; }
+input { padding: 10px 12px; border: 1px solid #c8d3de; border-radius: 8px; font: inherit; }
+button { padding: 12px 18px; border: 0; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: inherit; font-weight: 600; cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.error { color: var(--danger); }
+.hint { font-size: 0.9rem; }
+.links { margin-top: 24px; border-top: 1px solid #e3e9ef; padding-top: 16px; }
+.links input { width: 100%; box-sizing: border-box; }
+.room { height: 100vh; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+fieldset { border: 0; padding: 0; margin: 0; }
+legend { font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.chip { background: #e6eef5; color: var(--ink); font-weight: 500; padding: 8px 14px; border-radius: 999px; }
+.chip.on { background: var(--accent); color: var(--accent-ink); }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; color: var(--accent); margin: 0 0 4px; }
+select { padding: 10px 12px; border: 1px solid #c8d3de; border-radius: 8px; font: inherit; }
+.recording-off { position: fixed; inset: auto 16px 16px auto; max-width: 320px; padding: 16px; background: var(--surface); border-radius: 12px; box-shadow: 0 4px 16px rgb(11 27 43 / 0.2); z-index: 10000; }
+footer { margin-top: auto; padding: 16px; text-align: center; font-size: 0.8rem; color: var(--muted); }
+footer a { color: var(--accent); }
+
+@media (max-width: 560px) {
+  main.card { margin: 16px; padding: 20px; }
+}
+details { margin-top: 12px; }
+pre { white-space: pre-wrap; word-break: break-word; font-size: 0.8rem; background: #f3f6f9; padding: 12px; border-radius: 8px; }

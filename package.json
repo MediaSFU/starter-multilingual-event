@@ -1,0 +1,37 @@
+{
+  "name": "mediasfu-starter-multilingual-event",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One-click multilingual event on MediaSFU: speakers talk in one language, every listener picks theirs and hears it translated live.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --test --experimental-strip-types \"tests/*.test.ts\""
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@mediapipe/selfie_segmentation": "^0.1.1675465747",
+    "bootstrap": "^5.3.3",
+    "mediasfu-reactjs": "4.4.2",
+    "mediasoup-client": "^3.20.0",
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "socket.io-client": "^4.8.1",
+    "universal-cookie": "^7.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.7.0"
+  }
+}
