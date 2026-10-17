@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { isParticipantName } from './participant-name.ts';
 
 import { LANGUAGES } from './languages.ts';
 
@@ -48,7 +49,7 @@ export function readEventToken(token: string, key?: string, now = Date.now()): E
     const claims = JSON.parse(Buffer.from(body, 'base64url').toString('utf8')) as EventClaims;
     if (claims.kind !== 'event' && claims.kind !== 'host') return null;
     if (!/^[sp][A-Za-z0-9_-]{3,254}$/.test(claims.room)) return null;
-    if (typeof claims.host !== 'string' || !/^[A-Za-z0-9]{2,40}$/.test(claims.host)) return null;
+    if (!isParticipantName(claims.host)) return null;
     if (typeof claims.exp !== 'number' || claims.exp * 1000 < now) return null;
     return claims;
   } catch {

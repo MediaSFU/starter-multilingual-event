@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { isParticipantName } from '../../../lib/participant-name';
 import { NextResponse } from 'next/server';
 
 import { eventRoomPayload, issueEventToken, languageSetup, normalizeLanguages } from '../../../lib/event';
@@ -23,10 +24,10 @@ export async function POST(request: Request) {
   }
 
   const title = String(body.title ?? '').trim().slice(0, 120);
-  const hostName = String(body.hostName ?? '').replace(/[^A-Za-z0-9]/g, '').slice(0, 40);
+  const hostName = String(body.hostName ?? '');
   const startsAt = new Date(body.startsAt ?? Date.now());
-  if (!title || hostName.length < 2 || Number.isNaN(startsAt.getTime())) {
-    return NextResponse.json({ error: 'Add a title, a host name (letters and digits) and a start time.' }, { status: 400 });
+  if (!title || !isParticipantName(hostName) || Number.isNaN(startsAt.getTime())) {
+    return NextResponse.json({ error: 'Add a title, a host name of 2–10 letters and digits starting with a letter (no reserved words), and a start time.' }, { status: 400 });
   }
   const { floor, languages } = normalizeLanguages(String(body.floor ?? 'en'), body.languages);
   if (languages.length === 0) {

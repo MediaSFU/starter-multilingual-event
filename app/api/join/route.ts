@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isParticipantName } from '../../../lib/participant-name';
 
 import { readEventToken } from '../../../lib/event';
 import { roomsRequest } from '../../../lib/mediasfu';
@@ -14,13 +15,13 @@ export async function POST(request: Request) {
 
   // The host link joins under the signed host name; listeners choose their own,
   // but may not take the host's.
-  const cleaned = String(name ?? '').replace(/[^A-Za-z0-9]/g, '').slice(0, 30);
+  const cleaned = String(name ?? '');
   const userName = claims.kind === 'host' ? claims.host : cleaned;
   if (claims.kind === 'event' && userName.toLowerCase() === claims.host.toLowerCase()) {
     return NextResponse.json({ success: false, data: { error: 'That name is taken. Pick another.' } }, { status: 409 });
   }
-  if (userName.length < 2) {
-    return NextResponse.json({ success: false, data: { error: 'Enter a name with at least two letters or digits.' } }, { status: 400 });
+  if (!isParticipantName(userName)) {
+    return NextResponse.json({ success: false, data: { error: 'Enter a name of 2–10 letters and digits, starting with a letter. Reserved words are unavailable.' } }, { status: 400 });
   }
 
   try {

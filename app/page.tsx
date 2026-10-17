@@ -53,7 +53,7 @@ export default function Organizer() {
       <form onSubmit={submit}>
         <label>Organiser code<input type="password" required value={form.organizerCode} onChange={set('organizerCode')} /></label>
         <label>Event title<input required maxLength={120} placeholder="Sunday service" value={form.title} onChange={set('title')} /></label>
-        <label>Host name<input required pattern="[A-Za-z0-9]{2,40}" placeholder="PastorJames" value={form.hostName} onChange={set('hostName')} /></label>
+        <label>Host name<input required maxLength={10} pattern="[A-Za-z][A-Za-z0-9]{1,9}" placeholder="PastorJ" value={form.hostName} onChange={set('hostName')} /></label>
         <label>Starts<input type="datetime-local" value={form.startsAt} onChange={set('startsAt')} /></label>
         <div className="row">
           <label>Minutes<input type="number" min={15} max={720} value={form.durationMinutes} onChange={set('durationMinutes')} /></label>

@@ -26,6 +26,9 @@ MediaSFU key never reaches the browser.
 3. `npm install && npm run dev`, then open <http://localhost:3000>.
 4. Create an event, open the host link, then open the event link in a second browser and pick another language.
 
+Host and listener names use 2–10 ASCII letters and digits, starting with a letter. Reserved words such as `return` and
+`null` are unavailable, and listeners must choose a name different from the host's.
+
 **Check it works:** speak in the host tab; the listener tab plays your voice in the chosen language a moment later.
 
 ## How it works

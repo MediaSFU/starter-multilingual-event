@@ -12,7 +12,7 @@ const claims = {
   startsAt: '2026-10-18T09:00:00.000Z',
   floor: 'en',
   languages: ['es', 'yo'],
-  host: 'PastorJames',
+  host: 'PastorJ',
   exp,
 };
 
@@ -39,14 +39,14 @@ test('languages are known codes, unique, without the floor, at most six', () => 
 });
 
 test('event rooms are webinars with translation on and limits clamped', () => {
-  const payload = eventRoomPayload('PastorJames', 5000, 99999, 'church-translation');
+  const payload = eventRoomPayload('PastorJ', 5000, 99999, 'church-translation');
   assert.equal(payload.eventType, 'webinar');
   assert.equal(payload.supportTranslation, true);
   assert.equal(payload.translationOutputMode, 'audio');
   assert.equal(payload.translationConfigNickName, 'church-translation');
   assert.equal(payload.duration, 720);
   assert.equal(payload.capacity, 1000);
-  assert.equal(payload.userName, 'PastorJames');
+  assert.equal(payload.userName, 'PastorJ');
   assert.equal('translationConfigNickName' in eventRoomPayload('Host1', 60, 50), false);
 });
 

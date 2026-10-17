@@ -1,5 +1,7 @@
 'use client';
 
+import { isParticipantName } from '../../../lib/participant-name';
+
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
@@ -65,10 +67,10 @@ export default function EventLobby({
 
       {!isHost && (
         <label>Your name
-          <input value={name} onChange={(event) => setName(event.target.value)} pattern="[A-Za-z0-9]{2,30}" placeholder="Ada" />
+          <input value={name} onChange={(event) => setName(event.target.value)} maxLength={10} pattern="[A-Za-z][A-Za-z0-9]{1,9}" placeholder="Ada" />
         </label>
       )}
-      <button disabled={!isHost && !/^[A-Za-z0-9]{2,30}$/.test(name)} onClick={() => setJoined(true)}>
+      <button disabled={!isHost && !isParticipantName(name)} onClick={() => setJoined(true)}>
         {isHost ? 'Start the event' : 'Join'}
       </button>
     </main>

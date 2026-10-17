@@ -1,3 +1,5 @@
+import { isParticipantName } from './participant-name.ts';
+
 // Server-only MediaSFU calls. The API key never reaches the browser.
 
 const ROOMS_URL = process.env.MEDIASFU_ROOMS_URL ?? 'https://mediasfu.com/v1/rooms/';
@@ -23,6 +25,9 @@ export async function roomsRequest(
   body: Record<string, unknown>,
   { idempotencyKey, fetchImpl = fetch }: { idempotencyKey?: string; fetchImpl?: typeof fetch } = {},
 ): Promise<{ ok: boolean; status: number; data: RoomResult }> {
+  if ((body.action === 'create' || body.action === 'join') && !isParticipantName(body.userName)) {
+    throw new Error('Use a name of 2–10 letters and digits, starting with a letter; reserved words are unavailable.');
+  }
   const response = await fetchImpl(ROOMS_URL, {
     method: 'POST',
     headers: {
